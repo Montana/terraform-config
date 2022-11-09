@@ -35,26 +35,26 @@ variable "provider" {
 }
 
 provider "openstack" {
-  user_name   = "${var.os_username}"
-  tenant_name = "${var.os_tenant}"
-  password    = "${var.os_password}"
-  auth_url    = "${var.os_auth_url}"
-  region      = "${var.os_region}"
-  insecure    = "${var.os_insecure}"
+  user_name   = var.os_username
+  tenant_name = var.os_tenant
+  password    = var.os_password
+  auth_url    = var.os_auth_url
+  region      = var.os_region
+  insecure    = var.os_insecure
 }
 
 module "os_worker" {
   source            = "../modules/os_worker"
   instance_count    = 2
-  index             = "${var.index}"
+  index             = var.index
   env               = "production"
-  worker_image      = "${var.image_name}"
-  flavor_name       = "${var.flavor_name}"
-  network           = "${var.network}"
-  security_groups   = "${var.security_groups}"
-  provider          = "${var.provider}"
-  key_name          = "${var.key_name}"
-  availability_zone = "${var.availability_zone}"
+  worker_image      = var.image_name
+  flavor_name       = var.flavor_name
+  network           = var.network
+  security_groups   = var.security_groups
+  provider          = var.provider
+  key_name          = var.key_name
+  availability_zone = var.availability_zone
 
   worker_config = <<EOF
 ### worker.env
